@@ -1,0 +1,65 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Owner:</strong>
+  <%= @store.owner %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @store.name %>
+</p>
+
+<p>
+  <strong>Balance:</strong>
+  <%= '%.2f' % @store.balance %>
+</p>
+
+<p>
+  <strong>Transactions:</strong>
+</p>
+<table>
+  <thead>
+    <tr>
+      <%= page_entries_info @transactions %>
+    </tr>
+    <tr>
+      <th>Type</th>
+      <th>Value</th>
+      <th>Date</th>
+      <th>Time</th>
+      <th>CPF</th>
+      <th>Card</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @transactions.each do |transaction| %>
+      <tr>
+        <td>
+          <%= transaction.transaction_type.titleize %>
+        </td>
+        <td>
+          $<%= transaction.signal + ('%.2f' % transaction.value) %>
+        </td>
+        <td>
+          <%= transaction.date %>
+        </td>
+        <td>
+          <%= transaction.time.strftime("%H:%M:%S") %>
+        </td>
+        <td>
+          <%= transaction.cpf %>
+        </td>
+        <td>
+          <%= transaction.card %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+  <tfoot>
+    <%= paginate @transactions %>
+  </tfoot>
+</table>
+
+<%= link_to 'Back to Stores', stores_path %>

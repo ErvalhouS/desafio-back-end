@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Stores</h1>
+
+<table>
+  <thead>
+    <tr>
+      <%= page_entries_info @stores %>
+    </tr>
+    <tr>
+      <th>Owner</th>
+      <th>Name</th>
+      <th>Balance</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @stores.each do |store| %>
+      <tr>
+        <td><%= store.owner %></td>
+        <td><%= store.name %></td>
+        <td>$ <%= '%.2f' % store.balance %></td>
+        <td><%= link_to 'View Transactions', store %></td>
+      </tr>
+    <% end %>
+  </tbody>
+  <tfoot>
+    <%= paginate @stores %>
+  </tfoot>
+</table>

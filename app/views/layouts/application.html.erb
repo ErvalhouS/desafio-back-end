@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BluTest</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <nav id="menu">
+      <ul>
+        <li>
+          <%= link_to "CNAB Management", cnabs_url %>
+        </li>
+        <li>
+          <%= link_to "Stores", stores_url %>
+        </li>
+      </ul>
+    </nav>
+    <%= yield %>
+  </body>
+</html>

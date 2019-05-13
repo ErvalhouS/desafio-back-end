@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<h1>CNABs</h1>
+<%= link_to 'Submit a CNAB', new_cnab_path %>
+
+<table>
+  <thead>
+    <tr>
+      <%= page_entries_info @cnabs %>
+    </tr>
+    <tr>
+      <th>Proccessed?</th>
+      <th>Number of transactions</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cnabs.each do |cnab| %>
+      <tr>
+        <td><%= cnab.proccessed_at.present? ? '✓' : 'X' %></td>
+        <td><%= cnab.transactions_count %></td>
+        <td><%= link_to 'Show', cnab %></td>
+      </tr>
+    <% end %>
+  </tbody>
+  <tfoot>
+    <%= paginate @cnabs %>
+  </tfoot>
+</table>

@@ -1,0 +1,22 @@
+<%= form_with(model: cnab, local: true) do |form| %>
+  <% if cnab.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(cnab.errors.count, "error") %> prohibited this cnab from being saved:</h2>
+
+      <ul>
+      <% cnab.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :report %>
+    <%= form.file_field :report %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

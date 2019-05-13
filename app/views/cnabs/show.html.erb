@@ -1,0 +1,72 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Proccessed:</strong>
+  <%= @cnab.proccessed_at.present? ? '✓' : 'X' %>
+</p>
+
+<% if @cnab.proccessed_at.present? %>
+  <p>
+    <strong>Proccessed at:</strong>
+    <%= @cnab.proccessed_at %>
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <%= page_entries_info @transactions %>
+      </tr>
+      <tr>
+        <th>Type</th>
+        <th>Value</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>CPF</th>
+        <th>Card</th>
+        <th>Store</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @transactions.each do |transaction| %>
+        <tr>
+          <td>
+            <%= transaction.transaction_type.titleize %>
+          </td>
+          <td>
+            $<%= transaction.signal + ('%.2f' % transaction.value) %>
+          </td>
+          <td>
+            <%= transaction.date %>
+          </td>
+          <td>
+            <%= transaction.time.strftime("%H:%M:%S") %>
+          </td>
+          <td>
+            <%= transaction.cpf %>
+          </td>
+          <td>
+            <%= transaction.card %>
+          </td>
+          <td>
+            <%= link_to transaction.store.name, transaction.store %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+    <tfoot>
+      <%= paginate @transactions %>
+    </tfoot>
+  </table>
+<% elsif @cnab.failure %>
+  <p>
+    <strong>Proccessing failed:</strong>
+    <%= @cnab.failure_message %>
+  </p>
+<% else %>
+  <p>
+    <strong>Proccessing pending:</strong> ✓
+  </p>
+<% end %>
+
+<%= link_to 'Back to CNABs', cnabs_path %>

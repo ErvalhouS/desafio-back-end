@@ -1,0 +1,8 @@
+transaction:
+  transaction_type: 1
+  date: 1989-09-09
+  value: 6.66
+  cpf: 98745632100
+  card: 7894****7895
+  time: 03:00:00
+  store: store
